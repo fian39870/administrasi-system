@@ -1,67 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/stylelogin.css') }}">
 </head>
-<body>
-<form>
-  <!-- Email input -->
-  <div data-mdb-input-init class="form-outline mb-4 mt-5">
-  <label class="form-label" for="form2Example1">Email address</label>
-    <input type="email" id="form2Example1" class="form-control" />
-  </div>
 
-  <!-- Password input -->
-  <div data-mdb-input-init class="form-outline mb-4">
-  <label class="form-label" for="form2Example2">Password</label>
-    <input type="password" id="form2Example2" class="form-control" />
-    
-  </div>
+<body style="padding-bottom: 70px;">
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-sm-center h-100">
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                    <div class="text-center my-5">
+                        <img src="{{asset('logo/logo.png')}}" alt="logo" width="200px">
+                    </div>
+                    @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                            <form method="POST" action="{{route('login.post')}}" class="needs-validation">
+                                @csrf
+                                <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="email">E-Mail Address</label>
+                                    <input id="email" type="email" class="form-control" name="email" required autofocus>
 
-  <!-- 2 column grid layout for inline styling -->
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      <!-- Checkbox -->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
-      </div>
-    </div>
+                                </div>
 
-    <div class="col">
-      <!-- Simple link -->
-      <a href="#!">Forgot password?</a>
-    </div>
-  </div>
+                                <div class="mb-3">
+                                    <div class="mb-2 w-100">
+                                        <label class="text-muted" for="password">Password</label>
+                                        <a href="forgot.html" class="float-end">
+                                            Forgot Password?
+                                        </a>
+                                    </div>
+                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <div class="invalid-feedback">
+                                        Password is required
+                                    </div>
+                                </div>
 
-  <!-- Submit button -->
-  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
+                                <div class="d-flex align-items-center">
 
-  <!-- Register buttons -->
-  <div class="text-center">
-    <p>Not a member? <a href="#!">Register</a></p>
-    <p>or sign up with:</p>
-    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-facebook-f"></i>
-    </button>
+                                    <button type="submit" class="btn btn-primary ms-auto">
+                                        Login
+                                    </button>
 
-    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-google"></i>
-    </button>
+                                </div>
 
-    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-twitter"></i>
-    </button>
+                            </form>
+                        </div>
+                        <div class="card-footer py-3 border-0">
+                            <div class="text-center">
+                                Don't have an account? 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-github"></i>
-    </button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</form>
 </body>
+
 </html>
