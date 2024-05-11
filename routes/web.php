@@ -14,5 +14,6 @@ use App\Http\Controllers\Controller;
 |
 */
 
+Route::get('/home', [Controller::class, 'home'])->name('home');
 Route::get('/login', [Controller::class, 'showLogin'])->name('login');
 Route::post('/login', [Controller::class, 'login'])->name('login.post');

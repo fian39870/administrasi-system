@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Hash;
 
 class Controller extends BaseController
 {
+
+    public function home(){
+        return view('home');
+    }
     public function showLogin(){
         return view('login');
     }
@@ -21,15 +25,9 @@ class Controller extends BaseController
             'email'=>'required|email',
             'password'=>'required'
         ]);
-        $user = User::where('email', $validate['email'])->first();
-
-        // Check if user exists and password is correct
-        if ($user && Hash::check($validate['password'], $user->password)) {
-            // Attempt to log in the user
-            if (Auth::login($user)) {
-                $request->session()->regenerate();
-                return redirect()->intended('/')->with('success', 'Selamat, Anda berhasil login.');
-            }
+        if(auth()->attempt($validate)){
+            $request->session()->regenerate();
+            return redirect()->route('home');
         }
         else{
             return redirect()->back()->with('Email dan Password Salah');
